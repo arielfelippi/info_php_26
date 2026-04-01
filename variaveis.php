@@ -157,13 +157,41 @@ if ($ehPar == true || $ehPar) {
 }
 
 /**
- * Nota do aluno
+ * Nota do aluno média aritmetica
  */
 $nota1 = 3;
 $nota2 = 3;
 $nota3 = 4;
 
 $media = ($nota1 + $nota2 + $nota3) / 3;
+
+$mediaArredondada = round($media, 2);
+
+if ($mediaArredondada >= 7) {
+    echo "O Aluno foi aprovado com a média $mediaArredondada <br>";
+} else {
+     echo "O Aluno foi reprovado com a média $mediaArredondada <br>";
+}
+
+/**
+ *   Nota do aluno média harmonica
+ */
+
+// calcular a media aqui
+
+$mediaArredondada = round($media, 2);
+
+if ($mediaArredondada >= 7) {
+    echo "O Aluno foi aprovado com a média $mediaArredondada <br>";
+} else {
+     echo "O Aluno foi reprovado com a média $mediaArredondada <br>";
+}
+
+/**
+ *   Nota do aluno média ponderada
+ */
+
+// calcular a media aqui
 
 $mediaArredondada = round($media, 2);
 
