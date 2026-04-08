@@ -280,3 +280,22 @@ do {
 
 } while($contador <= 10);
 
+// Listar os 10 primeiros numeros pares com LOOP
+// 2, 4, 6, 8, 10, 12, 14, 16, 18, 20
+echo "<br>10 primeiros numeros pares<br>";
+
+$contador = 0;
+
+for($numero = 1; $contador < 10; $numero++) {
+    $divisor = 2;
+
+    $resultado = $numero / $divisor; // 3 quociente
+    $resto = $numero % $divisor; // 1 resto
+
+    $ehPar =  $resto == 0; // true || false
+
+    if ($ehPar) {
+        echo "O numero $numero é par. <br>";
+        $contador++;
+    }
+}
