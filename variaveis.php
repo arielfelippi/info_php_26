@@ -168,35 +168,115 @@ $media = ($nota1 + $nota2 + $nota3) / 3;
 $mediaArredondada = round($media, 2);
 
 if ($mediaArredondada >= 7) {
-    echo "O Aluno foi aprovado com a média $mediaArredondada <br>";
+    echo "O Aluno foi aprovado com a média(aritmetica) $mediaArredondada <br>";
 } else {
-     echo "O Aluno foi reprovado com a média $mediaArredondada <br>";
+     echo "O Aluno foi reprovado com a média(aritmetica) $mediaArredondada <br>";
 }
 
 /**
  *   Nota do aluno média harmonica
  */
 
-// calcular a media aqui
+$nota1 = 15;
+$nota2 = 10;
+$nota3 = 6;
 
-$mediaArredondada = round($media, 2);
+$mediaHarmonica= 3 / ( ( 1/ $nota1) + ( 1/ $nota2) +  ( 1/ $nota3));
+
+$mediaArredondada = round($mediaHarmonica, 2);
 
 if ($mediaArredondada >= 7) {
-    echo "O Aluno foi aprovado com a média $mediaArredondada <br>";
+    echo "O Aluno foi aprovado com a média(harmonica) $mediaArredondada <br>";
 } else {
-     echo "O Aluno foi reprovado com a média $mediaArredondada <br>";
+     echo "O Aluno foi reprovado com a média(harmonica) $mediaArredondada <br>";
 }
 
 /**
  *   Nota do aluno média ponderada
  */
 
-// calcular a media aqui
+$nota1 = 1100;
+$nota2 = 2000;
+$nota3 = 5500;
+$nota4 = 12500;
 
-$mediaArredondada = round($media, 2);
+$peso1 = 5;
+$peso2 = 16;
+$peso3 = 3;
+$peso4 = 1;
+
+$numerador = ($nota1 * $peso1) + ($nota2 * $peso2) + ($nota3 * $peso3) + ($nota4 * $peso4);
+$denominador = $peso1 + $peso2 + $peso3 + $peso4;
+
+$mediaPonderada = $numerador / $denominador;
+
+$mediaArredondada = round($mediaPonderada, 2);
 
 if ($mediaArredondada >= 7) {
-    echo "O Aluno foi aprovado com a média $mediaArredondada <br>";
+    echo "O Aluno foi aprovado com a média(ponderada) $mediaArredondada <br>";
 } else {
-     echo "O Aluno foi reprovado com a média $mediaArredondada <br>";
+     echo "O Aluno foi reprovado com a média(ponderada) $mediaArredondada <br>";
 }
+
+echo "<br>";
+
+// LOOPS
+$contador = 0;
+$contador = $contador + 1; // 1
+$contador += 1; // 1
+$contador++;
+
+$numero = 4;
+
+for($contador = 0; $contador <= 10; $contador++) {
+    echo "$numero x $contador = " . $numero * $contador . "<br>";
+}
+
+// for ($numero = 1; $numero <= 10; $numero++) {
+//     for($contador = 0; $contador <= 10; $contador++) {
+//         echo "$numero x $contador = " . $numero * $contador . "<br>";
+//     }
+// }
+
+echo "<br>while<br>";
+
+$numero = 4;
+$contador = 0;
+
+while($contador <= 10) {
+    echo "$numero x $contador = " . $numero * $contador . "<br>";
+    $contador++;
+}
+
+echo "<br>while completo<br>";
+
+$numero = 1;
+$contador = 0;
+
+while($contador <= 10) {
+    echo "$numero x $contador = " . $numero * $contador . "<br>";
+    $contador++;
+
+    if ($contador == 11) {
+        $numero++;
+        $contador = 0;
+        echo "<br>";
+    }
+
+    if ( $numero == 11) {
+        break;
+    }
+}
+
+
+echo "<br>do while<br>";
+
+$numero = 4;
+$contador = 11;
+
+do {
+    echo "$numero x $contador = " . $numero * $contador . "<br>";
+    $contador++;
+
+} while($contador <= 10);
+
