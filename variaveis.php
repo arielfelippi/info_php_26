@@ -299,3 +299,57 @@ for($numero = 1; $contador < 10; $numero++) {
         $contador++;
     }
 }
+
+// EXERCICIOS de REVISAO AULA 14/04/2026.
+
+/**
+ * Calcular IMC(Indice de Massa Corporal) de uma pessoa e
+ * exibir os valores utilizados no calculo assim como o seu IMC.
+ *
+ * Saída esperada: O IMC é: 123
+ */
+
+/**
+ * Calcular quantos segundos tem em 2 horas e 30 minutos e exibir o valor.
+ *
+ * Dica: converter tudo para uma mesma medida (segundos) para facilitar o calculo.
+ *
+ * Saída esperada: O Total em segundos é: 9000.
+ */
+
+/**
+ * Simular o funcionamento de uma calculadora com as duas estruturas lógicas:
+ * Switch Case e IF ELSE IF ELSE. Não é necessário o ZERAR, somente o calculo.
+ * Operadores: + - * /
+ *
+ * Dica: utilizar 4 variáveis, uma delas vai ser $operador a outra $resultado.
+ */
+
+/**
+ * Exibir os numeros em ordem DECRESCENTE(Maior para Menor - DESC) de 10 - 0.
+ *
+ * Dica: utilizar laçoes de repetição(loops) FOR e WHILE
+ *
+ * Saída esperada: 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0.
+ */
+
+/**
+ * Calcular o fatorial de um numero qualquer.
+ * Ex.: calcular o fatorial de 5 (5!).
+ *
+ * Dica: 5 x 4 x 3 x 2 x 1. utilizar laçoes de repetição(loops) FOR e WHILE
+ *
+ * Saída esperada: o fatorial de 5 é: 120.
+ */
+
+
+/**
+ * Com base no exercicio de:
+ * Listar os 10 primeiros numeros pares com laçoes de repetição(loops) utilizando FOR e WHILE.
+ *
+ * Encontrar os 5 primeiros numeros Primos.
+ *
+ * Dica: Utilizar calculo dos pares, sendo que o unico primo par é o 2.
+ *
+ * Saída esperada: Os 5 primeiros Primos são: 3, 5, 7, 11, 13
+ */
