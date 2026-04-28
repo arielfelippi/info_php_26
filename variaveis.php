@@ -478,4 +478,4 @@ for($numero = 3; $contadorPrimos < $limitePrimos; $numero++) {
     }
 }
 
- echo "Os 5 primeiros Primos são: $primos<br>";
+ echo "Os $limitePrimos primeiros Primos são: $primos<br>";
