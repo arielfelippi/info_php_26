@@ -161,6 +161,9 @@ $produtos = [
     "quantidade" => 30,
 ];
 
+$produtos["cor"] = "vermelha";
+$produtos["cor"] = "azul";
+
 foreach ($produtos as $idx => $informacao) {
      echo "$idx - $informacao<br>";
 }
@@ -171,11 +174,13 @@ $produtos = [
         "nome" => "Lápis",
         "preço" => "5.75",
         "quantidade" => 30,
+        "cor" => "vermelho",
     ],
     [
         "nome" => "Caneta",
         "preço" => "5.75",
         "quantidade" => 30,
+        cor => "azul",
     ]
 ];
 
@@ -192,6 +197,7 @@ $produtos[1]["nome"] = "Caneta";
 echo "<br>"; 
 $frutas = ["maçã", "banana"];
 $frutas[] = "laranja";
+array_push($frutas,"abacaxi");
 // print_r($frutas);
 echo "Frutas são: " . implode(", ", $frutas) . "<br>";
 
