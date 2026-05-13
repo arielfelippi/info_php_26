@@ -27,7 +27,7 @@
 //  * A soma dos valores é: SOMA
 //  */
 // $valor = 10;
-// $valor2 = 10;
+// $valor2 = 20;
 // $resultado = $valor + $valor2;
 // echo "A soma dos valores $valor + $valor2 é: $resultado <br>";
 
@@ -36,7 +36,7 @@
 //  * A subtração dos valores é: SUBTRACAO
 //  */
 // $valor = 10;
-// $valor2 = 10;
+// $valor2 = 20;
 // $resultado = $valor - $valor2;
 // echo "A subtração dos valores $valor - $valor2 é: $resultado <br>";
 
