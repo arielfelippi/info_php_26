@@ -18,8 +18,7 @@ function executar() {
         $resultado = calcular($operacao, $a, $b);
         echo "Resultado: " . $resultado . "\n";
 
-        echo "\nDeseja realizar outra operação? (s/n): ";
-        $resposta = readline();
+        $resposta = desejaContinuar();
 
         if ($resposta == 'n' || $resposta == 'N') {
             break;
@@ -37,6 +36,18 @@ function exibirMenu() {
     echo "3. Multiplicar\n";
     echo "4. Dividir\n";
     echo "5. Potenciação\n";
+}
+
+function desejaContinuar() {
+    echo "\nDeseja realizar outra operação? (s/n): ";
+    $resposta = readline();
+
+    if ($resposta != 'n' && $resposta != 's' && $resposta != 'N' && $resposta != 'S') {
+        echo "Resposta inválida! Por favor, digite 's' para sim ou 'n' para não.\n";
+        desejaContinuar();
+    } 
+
+    return $resposta;
 }
 
 function ajustarOperacao($operacao) {
