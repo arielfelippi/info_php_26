@@ -1,14 +1,65 @@
 <?php
 
 /**
- * Exercício: Criar um sistema que calcule o aumento de salário de um funcionário e os desconto do INSS e do IRPF, considerando as seguintes regras:
- * - O aumento de salário é de 10% para salários até R$ 1000.
+ * Exercício: Criar um sistema que calcule o aumento de salário de um funcionário e os desconto do INSS e do IRPF,
+ * considerando as seguintes regras:
+ * - O aumento de salário é de 10% para salários até R$ 1.999.
  * - O aumento de salário é de 3% para salários acima de R$ 2.000.
  * - O desconto do INSS é de 11% para salários acima de R$ 3.000.
- * - O desconto do IRPF é de 0% para salários até R$ 1.500.
+ * - O desconto do IRPF é de 0% para salários até R$ 4.500.
  * - O desconto do IRPF é de 22.5% para salários acima de R$ 4.500.
  * Utilizar como exemplo o sistema da calculadora no terminal,
  * onde o usuário irá digitar o salário do funcionário e o sistema irá exibir o salário atualizado com os descontos aplicados.
  * Dica: Utilizar a função number_format() para formatar o salário com duas casas decimais e o símbolo de moeda.
  */
 
+// Executar no terminal:   php ./funcionario.php || php funcionario.php
+executar();
+
+function executar() {
+    do {
+        echo "Bem-vindo à Calculadora de Salários!\n";
+        echo "-----------------------------\n";
+
+        exibirMenu();
+
+        // logica aqui
+
+        $resposta = desejaContinuar();
+
+        if ($resposta == 'n' || $resposta == 'N') {
+            break;
+        } 
+
+        echo "\n";
+
+    } while (true);
+}
+
+function exibirMenu() {
+    echo "Escolha a opção:\n";
+    echo "1. Calcular Salário\n";
+    echo "2. Exibir Aumento\n";
+    echo "3. Exibir Descontos\n";
+    echo "4. Exibir Salário Anterior e o Atualizado\n";
+    echo "5. Exibir Holerite\n";
+}
+
+function lerSalario() {
+    echo "Digite o salário do funcionário: ";
+    $salario = readline();
+
+    return $salario;
+}
+
+function desejaContinuar() {
+    echo "\nDeseja realizar outra operação? (s/n): ";
+    $resposta = readline();
+
+    if ($resposta != 'n' && $resposta != 's' && $resposta != 'N' && $resposta != 'S') {
+        echo "Resposta inválida! Por favor, digite 's' para sim ou 'n' para não.\n";
+        desejaContinuar();
+    } 
+
+    return $resposta;
+}
