@@ -30,6 +30,15 @@ function executar() {
     } while (true);
 }
 
+function exibirMenu() {
+    echo "Escolha a operação:\n";
+    echo "1. Somar\n";
+    echo "2. Subtrair\n";
+    echo "3. Multiplicar\n";
+    echo "4. Dividir\n";
+    echo "5. Potenciação\n";
+}
+
 function ajustarOperacao($operacao) {
     if ($operacao == '1') {
         return 'somar';
@@ -44,15 +53,6 @@ function ajustarOperacao($operacao) {
     } else {
         return strtolower($operacao); // Retorna a operação digitada pelo usuário, convertida para minúscula
     }
-}
-
-function exibirMenu() {
-    echo "Escolha a operação:\n";
-    echo "1. Somar\n";
-    echo "2. Subtrair\n";
-    echo "3. Multiplicar\n";
-    echo "4. Dividir\n";
-    echo "5. Potenciação\n";
 }
 
 function calcular($operacao, $valor1, $valor2) {
