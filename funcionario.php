@@ -36,13 +36,25 @@ function executar() {
     } while (true);
 }
 
+function desejaContinuar() {
+    echo "\nDeseja realizar outra operação? (s/n): ";
+    $resposta = readline();
+
+    if ($resposta != 'n' && $resposta != 's' && $resposta != 'N' && $resposta != 'S') {
+        echo "Resposta inválida! Por favor, digite 's' para sim ou 'n' para não.\n";
+        return desejaContinuar();
+    } 
+    
+    return $resposta;
+}
+
 function exibirMenu() {
     echo "Escolha a opção:\n";
     echo "1. Calcular Salário\n";
     echo "2. Exibir Aumento\n";
     echo "3. Exibir Descontos\n";
     echo "4. Exibir Salário Anterior e o Atualizado\n";
-    echo "5. Exibir Holerite\n";
+    echo "5. Exibir Holerite(contra-cheque)\n";
 }
 
 function lerSalario() {
@@ -50,16 +62,4 @@ function lerSalario() {
     $salario = readline();
 
     return $salario;
-}
-
-function desejaContinuar() {
-    echo "\nDeseja realizar outra operação? (s/n): ";
-    $resposta = readline();
-
-    if ($resposta != 'n' && $resposta != 's' && $resposta != 'N' && $resposta != 'S') {
-        echo "Resposta inválida! Por favor, digite 's' para sim ou 'n' para não.\n";
-        desejaContinuar();
-    } 
-
-    return $resposta;
 }

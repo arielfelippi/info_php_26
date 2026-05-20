@@ -44,7 +44,7 @@ function desejaContinuar() {
 
     if ($resposta != 'n' && $resposta != 's' && $resposta != 'N' && $resposta != 'S') {
         echo "Resposta inválida! Por favor, digite 's' para sim ou 'n' para não.\n";
-        desejaContinuar();
+        return desejaContinuar();
     } 
 
     return $resposta;
