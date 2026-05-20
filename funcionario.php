@@ -75,15 +75,20 @@ function lerOpcaoMenu() {
 
 function executarOpcao($opcao, $salario) {
     if ($opcao == '1') {
-        return calcularSalario($salario);
+        calcularSalario($salario);
+        return 1;
     } elseif ($opcao == '2') {
-        return exibirAumento($salario);
+        exibirAumento($salario);
+        return 2;
     } elseif ($opcao == '3') {
-        return exibirDescontos($salario);
+        exibirDescontos($salario);
+        return 3;
     } elseif ($opcao == '4') {
-        return exibirSalarios($salario);
+        exibirSalarios($salario);
+        return 4;
     } elseif ($opcao == '5') {
-        return exibirHolerite($salario);
+        exibirHolerite($salario);
+        return 5;
     } else {
          return 0;
     }
