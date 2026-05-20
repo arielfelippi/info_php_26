@@ -32,8 +32,6 @@ function executar() {
             continue;
         }
 
-        // logica aqui
-
         $resposta = desejaContinuar();
 
         if ($resposta == 'n' || $resposta == 'N') {
@@ -101,8 +99,23 @@ function lerSalario() {
     return $salario;
 }
 
+function formatarSalario($salario) {
+    return number_format($salario, 2, ',', '.');
+}
+
+function calcularAumento($salario) {
+    if ($salario <= 1999) {
+        return $salario * 0.10;
+    } else {
+        return $salario * 0.03;
+    }
+}
+
 function calcularSalario($salario) {
-    // logica aqui
+    $aumento = calcularAumento($salario);
+    $salarioAtualizado = $salario + $aumento;
+    
+    echo "\nSalário atualizado com aumento: R$ " . formatarSalario($salarioAtualizado) . "\n";
 }
 
 function exibirAumento($salario) {
