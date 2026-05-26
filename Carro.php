@@ -6,7 +6,7 @@ class Carro {
     const COMBUSTIVEL = "Gasolina"; // Constante da classe Carro
     private $marca;
     private $modelo;
-    private $ano;
+    private $ano = 2020;
 
     public function __construct($marca, $modelo, $ano) {
         $this->marca = $marca;
@@ -41,6 +41,14 @@ class Carro {
         $this->exibirInformacoes();
     }
 
+    public function ligar() {
+        echo "O carro está ligado.<br>";
+    }
+
+    public function desligar() {
+        echo "O carro está desligado.<br>";
+    }
+
 } // Fim da classe Carro
 
 // Criando um objeto da classe Carro
@@ -53,5 +61,6 @@ echo "<br>";
 
 $marca = "Honda";
 $meuCarro = new Carro($marca, "Civic", 2022); 
+$meuCarro->ligar();
 $meuCarro->exibirInformacoes();
-
+$meuCarro->desligar();
