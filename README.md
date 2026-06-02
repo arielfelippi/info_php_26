@@ -14,7 +14,7 @@ CREATE database info_php_26;
 
 CREATE USER 'aluno'@localhost IDENTIFIED BY '1234';
 
-GRANT ALL PRIVILEGES ON '*.*' TO 'aluno'@localhost IDENTIFIED BY '1234';
+GRANT ALL PRIVILEGES ON \*.\* TO 'aluno'@localhost IDENTIFIED BY '1234';
 
 https://phoenixnap.com/kb/how-to-create-mariadb-user-grant-privileges#:~:text=To%20create%20a%20new%20MariaDB,
 to%20a%20local%20MySQL%20server.
