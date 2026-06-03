@@ -3,14 +3,14 @@
 abstract class Pessoa {
     protected $nome;
     protected $idade;
-    protected $telefone;
     protected Endereco $endereco;
+    protected $telefone;
 
-    public function __construct($nome, $idade, $telefone, Endereco $endereco) {
+    public function __construct($nome, $idade, Endereco $endereco, $telefone) {
         $this->nome = $nome;
         $this->idade = $idade;
-        $this->telefone = $telefone;
         $this->endereco = $endereco;
+        $this->telefone = $telefone;
 
         if (!$this->validarPessoa()) {
             throw new InvalidArgumentException("Dados da pessoa inválidos");

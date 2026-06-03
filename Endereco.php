@@ -1,12 +1,12 @@
 <?php
 
 class Endereco {
+    private $estado;
+    private $cidade;
+    private $cep;
+    private $bairro;
     private $rua;
     private $numero;
-    private $bairro;
-    private $cidade;
-    private $estado;
-    private $cep;
 
     public function __construct($estado, $cidade, $cep, $bairro, $rua, $numero = "S/N") {
         $this->estado = $estado;

@@ -7,6 +7,7 @@ class Funcionario {
     private $cargo;
     private $setor;
     private $cracha;
+    private $idPessoa;
 
     public function __construct($nome, $sobrenome, $salario, $cargo, $setor, $cracha) {
         $this->nome = $nome;
