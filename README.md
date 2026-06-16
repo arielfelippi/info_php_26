@@ -21,7 +21,7 @@ to%20a%20local%20MySQL%20server.
 
 set session sql_mode = 'No_engine_substitution';
 
-
+```SQL
 -- Retornar se o filtro for atendido
 select u.* from usuario as u
 inner join pessoa_fisica as pf 
@@ -39,3 +39,25 @@ ON u.id = pf.usuario_alteracao;
 select u.* from usuario as u
 right join pessoa_fisica as pf 
 ON u.id = pf.usuario_alteracao;
+
+
+
+-- TODOS ENDERECOS USADOS EM PESSOAS
+SELECT p.id as "idPessoa", p.nome as "nomePessoa", p.cpf, ende.estado, ende.cidade, ende.cep, ende.bairro, ende.rua, ende.numero
+FROM endereco ende
+JOIN pessoa p ON ende.id = p.idEndereco;
+
+SELECT p.id as "idPessoa", p.nome as "nomePessoa", p.cpf, ende.estado, ende.cidade, ende.cep, ende.bairro, ende.rua, ende.numero
+FROM endereco ende
+INNER JOIN pessoa p ON ende.id = p.idEndereco
+WHERE UPPER(ende.cidade) like "%BG%";
+
+SELECT p.id as "idPessoa", p.nome as "nomePessoa", p.cpf, ende.estado, ende.cidade, ende.cep, ende.bairro, ende.rua, ende.numero
+FROM endereco ende
+left JOIN pessoa p ON ende.id = p.idEndereco;
+
+
+SELECT p.id as "idPessoa", p.nome as "nomePessoa", p.cpf, ende.estado, ende.cidade, ende.cep, ende.bairro, ende.rua, ende.numero
+FROM endereco ende
+right JOIN pessoa p ON ende.id = p.idEndereco;
+```
