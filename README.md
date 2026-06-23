@@ -10,11 +10,22 @@ git clone LINK_GITHUB da um enter. Novamente, file open folder: seleciona tudo e
 
 # MariaDB
 
-CREATE database info_php_26;
+## Executar no terminal os comandos abaixo
+sudo service mariadb start
 
-CREATE USER 'aluno'@localhost IDENTIFIED BY '1234';
+sudo mysql -uroot -p
 
-GRANT ALL PRIVILEGES ON \*.\* TO 'aluno'@localhost IDENTIFIED BY '1234';
+```BASH
+   CREATE database info_php_26;
+
+   SHOW DATABASES;
+
+   CREATE USER 'aluno'@localhost IDENTIFIED BY '1234';
+
+   GRANT ALL PRIVILEGES ON *.* TO 'aluno'@localhost IDENTIFIED BY '1234';
+
+   flush privileges;
+```
 
 https://phoenixnap.com/kb/how-to-create-mariadb-user-grant-privileges#:~:text=To%20create%20a%20new%20MariaDB,
 to%20a%20local%20MySQL%20server.
@@ -65,9 +76,16 @@ SELECT p.id as "idPessoa", p.nome as "nomePessoa", p.cpf, func.cargo, func.crach
 FROM funcionario func 
 INNER JOIN pessoa p ON func.idPessoa = p.id;
 
--- Deixa a data e hora automatica no insert e update
-ALTER TABLE info_php_26.estados MODIFY COLUMN criadoEm TIMESTAMP DEFAULT CURRENT_TIMESTAMP;
-ALTER TABLE info_php_26.estados MODIFY COLUMN atualizadoEm TIMESTAMP DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP;
+-- Adicionar campos e deixar a data e hora automatica no insert e update
+ALTER TABLE info_php_26.funcionario ADD criadoEm TIMESTAMP NULL;
+ALTER TABLE info_php_26.funcionario ADD atualizadoEm TIMESTAMP NULL;
+
+ALTER TABLE info_php_26.funcionario MODIFY COLUMN criadoEm TIMESTAMP DEFAULT CURRENT_TIMESTAMP;
+ALTER TABLE info_php_26.funcionario MODIFY COLUMN atualizadoEm TIMESTAMP DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP;
+
+-- OU tudo em um unico SQL
+ALTER TABLE info_php_26.cidades ADD criadoEm TIMESTAMP DEFAULT CURRENT_TIMESTAMP;
+ALTER TABLE info_php_26.cidades ADD atualizadoEm TIMESTAMP DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP;
 
 
 -- Campos comuns de todas as tabelas:
