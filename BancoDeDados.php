@@ -1,6 +1,6 @@
 <?php
 
-class BancoDados {
+class BancoDeDados {
 
     private $conexao;
     
@@ -34,7 +34,7 @@ class BancoDados {
         $existeDados = $result->num_rows > 0;
 
         if (!$existeDados) {
-            return $dados;
+            return $dados; // []
         }
 
         while ($registro = $result->fetch_assoc()) {
