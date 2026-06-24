@@ -17,5 +17,9 @@ class FuncionarioModel {
         return $this->banco->execQuery($sql, "Não foi possivel obter os funcionarios.");
     }
 
-}
+    /**
+     * Create.
+     * INSERT INTO funcionario (nome, sobrenome, salario, cargo, setor, cracha, idPessoa) VALUES( '', '', 0, '', '', '', NULL);
+    */
 
+}
