@@ -1,5 +1,7 @@
 <?php
 
+// CRUD - Create, Read, Update, Delete
+
 class FuncionarioModel {
     private $banco;
     private $tabela = "funcionario";
