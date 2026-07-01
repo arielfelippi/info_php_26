@@ -2,21 +2,29 @@
 
 require_once "bootstrap.php";
 
+$dados = $_REQUEST ?? [];
+
+print_r($dados);
+
+exit;
+
 echo "<pre>";
 try {
     $dados = [
-            "nome" => "Rafaella",
-            "sobrenome" => "Silva",
-            "salario" => 15000,
-            "cargo" => "Dentista",
+            "nome" => "Ana",
+            "sobrenome" => "Beltrano",
+            "salario" => 26000,
+            "cargo" => "Medica",
             "setor" => "Saude",
-            "cracha" => "0032",
-            "idPessoa" => 5,
+            "cracha" => "0035",
+            "idPessoa" => 9,
         ];
 
-    $idFuncionario = $funcionarioModel->criar($dados);
-    $funcionarios = $funcionarioModel->listarPorId($idFuncionario);
-    print_r($funcionarios);
+    $idFuncionario = 6;//$funcionario->criar($dados);
+    $funcionarios = $funcionario->listarPorId($idFuncionario);
+    // print_r($funcionarios);
+    echo $funcionarios;    
+
 } catch (Exception $e) {
     echo $e->getMessage();
 }
