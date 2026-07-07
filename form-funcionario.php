@@ -80,5 +80,5 @@ function escapar($valor): string
 
     <button type="submit">Salvar</button>
 
-    <a href="/funcionarios">Voltar</a>
+    <a href="/info_php_26/funcionarios">Voltar</a>
 </form>

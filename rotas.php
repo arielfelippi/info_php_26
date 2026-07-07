@@ -1,20 +1,22 @@
 <?php
 
+$base_url = "/info_php_26";
+
 return [
-    ['GET', '/', function () {
+    ['GET', "$base_url/", function () {
         echo "<h1>Página inicial</h1>";
         echo "<a href='/funcionarios'>Funcionários</a>";
     }],
 
-    ['GET', '/funcionarios', [$funcionarioController, 'listar']],
+    ['GET', "$base_url/funcionarios", [$funcionarioController, 'listar']],
 
-    ['GET', '/funcionarios/novo', [$funcionarioController, 'novo']],
+    ['GET', "$base_url/funcionarios/novo", [$funcionarioController, 'novo']],
 
-    ['POST', '/funcionarios', [$funcionarioController, 'criar']],
+    ['POST', "$base_url/funcionarios", [$funcionarioController, 'criar']],
 
-    ['GET', '/funcionarios/{id}/editar', [$funcionarioController, 'editar']],
+    ['GET', "$base_url/funcionarios/{id}/editar", [$funcionarioController, 'editar']],
 
-    ['POST', '/funcionarios/{id}', [$funcionarioController, 'atualizar']],
+    ['POST', "$base_url/funcionarios/{id}", [$funcionarioController, 'atualizar']],
 
-    ['POST', '/funcionarios/{id}/deletar', [$funcionarioController, 'deletar']],
+    ['POST', "$base_url/funcionarios/{id}/deletar", [$funcionarioController, 'deletar']],
 ];

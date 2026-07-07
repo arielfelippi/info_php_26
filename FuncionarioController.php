@@ -9,9 +9,10 @@ class FuncionarioController
         $this->funcionarioModel = $funcionarioModel;
     }
 
-    public function listar(): void
+    public function listar()
     {
         try {
+            // todo mundo que ta no banco na tabela de funcionarios
             $registros = $this->funcionarioModel->listar();
 
             $funcionarios = array_map(function ($registro) {
@@ -23,7 +24,7 @@ class FuncionarioController
 
         echo "<h1>Funcionários</h1>";
 
-        echo "<a href='/funcionarios/novo'>Novo funcionário</a>";
+        echo "<a href='/info_php_26/funcionarios/novo'>Novo funcionário</a>";
 
         echo "<br><br>";
 
@@ -57,10 +58,10 @@ class FuncionarioController
             echo "<td>{$funcionario->getIdPessoa()}</td>";
 
             echo "<td>";
-            echo "<a href='/funcionarios/{$funcionario->getId()}/editar'>Editar</a>";
+            echo "<a href='/info_php_26/funcionarios/{$funcionario->getId()}/editar'>Editar</a>";
 
             echo "
-                <form method='POST' action='/funcionarios/{$funcionario->getId()}/deletar' style='display:inline'>
+                <form method='POST' action='/info_php_26/funcionarios/{$funcionario->getId()}/deletar' style='display:inline'>
                     <button type='submit'>Excluir</button>
                 </form>
             ";
@@ -75,7 +76,7 @@ class FuncionarioController
     public function novo(): void
     {
         $titulo = "Novo funcionário";
-        $action = "/funcionarios";
+        $action = "/info_php_26/funcionarios";
         $funcionarioFormulario = new Funcionario();
 
         require __DIR__ . "/form-funcionario.php";
@@ -111,9 +112,9 @@ class FuncionarioController
         }
 
         $titulo = "Editar funcionário";
-        $action = "/funcionarios/{$id}";
+        $action = "/info_php_26/funcionarios/{$id}";
 
-        require __DIR__ . "/form-funcionario.php";
+        require __DIR__ . "/info_php_26/form-funcionario.php";
     }
 
     public function atualizar(int|string $id): void
@@ -155,7 +156,7 @@ class FuncionarioController
 
     private function redirecionarParaFuncionarios(): void
     {
-        header("Location: /funcionarios");
+        header("Location: /info_php_26/funcionarios");
         exit;
     }
 }
