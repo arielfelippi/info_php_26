@@ -1,125 +1,103 @@
 <?php
 
-class Funcionario {
-    private FuncionarioModel $funcionarioModel;
-    private $nome;
-    private $sobrenome;
-    private $salario;
-    private $cargo;
-    private $setor;
-    private $cracha;
-    private $idPessoa;
+class Funcionario
+{
+    private ?int $id = null;
+    private string $nome = "";
+    private string $sobrenome = "";
+    private float $salario = 0;
+    private string $cargo = "";
+    private string $setor = "";
+    private string $cracha = "";
+    private ?int $idPessoa = null;
 
-    public function __construct(FuncionarioModel $funcionarioModel) {
-        $this->funcionarioModel = $funcionarioModel;
+    public static function criarPorDados(object|array $dados): self
+    {
+        $funcionario = new self();
+
+        $funcionario->preencher($dados);
+
+        return $funcionario;
     }
 
-    private function construirFuncionario($dados) {
-        $this->nome = $dados->nome ?? $this->getNome();
-        $this->sobrenome = $dados->sobrenome ?? $this->getSobrenome();
-        $this->salario = $dados->salario ?? $this->getSalario();
-        $this->cargo = $dados->cargo ?? $this->getCargo();
-        $this->setor = $dados->setor ?? $this->getSetor();
-        $this->cracha = $dados->cracha ?? $this->getCracha();
-        $this->idPessoa = $dados->idPessoa ?? $this->getIdPessoa();
+    public function preencher(object|array $dados): void
+    {
+        $dados = (object) $dados;
+
+        $this->id = isset($dados->id) ? (int) $dados->id : $this->id;
+        $this->nome = $dados->nome ?? $this->nome;
+        $this->sobrenome = $dados->sobrenome ?? $this->sobrenome;
+        $this->salario = isset($dados->salario) ? (float) $dados->salario : $this->salario;
+        $this->cargo = $dados->cargo ?? $this->cargo;
+        $this->setor = $dados->setor ?? $this->setor;
+        $this->cracha = $dados->cracha ?? $this->cracha;
+        $this->idPessoa = isset($dados->idPessoa) ? (int) $dados->idPessoa : $this->idPessoa;
     }
 
-    private function toArray() {
+    public function toArray(): array
+    {
         return [
-            'nome' => $this->nome ?? $this->getNome(),
-            'sobrenome' => $this->sobrenome ?? $this->getSobrenome(),
-            'salario' => $this->salario ?? $this->getSalario(),
-            'cargo' => $this->cargo ?? $this->getCargo(),
-            'setor' => $this->setor ?? $this->getSetor(),
-            'cracha' => $this->cracha ?? $this->getCracha(),
-            'idPessoa' => $this->idPessoa ?? $this->getIdPessoa(),
+            "id" => $this->id,
+            "nome" => $this->nome,
+            "sobrenome" => $this->sobrenome,
+            "salario" => $this->salario,
+            "cargo" => $this->cargo,
+            "setor" => $this->setor,
+            "cracha" => $this->cracha,
+            "idPessoa" => $this->idPessoa,
         ];
     }
 
-    public function __toString()
+    public function toArrayParaBanco(): array
     {
-        return implode(", ", $this->toArray());
+        return [
+            "nome" => $this->nome,
+            "sobrenome" => $this->sobrenome,
+            "salario" => $this->salario,
+            "cargo" => $this->cargo,
+            "setor" => $this->setor,
+            "cracha" => $this->cracha,
+            "idPessoa" => $this->idPessoa,
+        ];
     }
 
-    public function criar($dados) {
-        $this->construirFuncionario($dados);
-        return $this->funcionarioModel->criar($this->toArray());
+    public function getId(): ?int
+    {
+        return $this->id;
     }
 
-    public function atualizar($id, $dados) {
-        $this->construirFuncionario($dados);
-        return $this->funcionarioModel->atualizar($id, $this->toArray());
-    }
-
-    public function listar($filtros = []) {
-        return $this->funcionarioModel->listar($filtros);
-    }
-
-    public function listarPorId($id) {
-        $funcionario = $this->funcionarioModel->listarPorId($id);
-        
-        $this->construirFuncionario($funcionario[0] ?? []);
-        
-        return $this;
-    }
-
-    public function excluir($id) {
-        return $this->funcionarioModel->excluir($id);
-    }
-
-    public function getId() {
-        return $this->id ?? 0;
-    }
-
-    public function getIdPessoa() {
-        return $this->idPessoa ?? 0;
-    }
-
-    public function getNome() {
+    public function getNome(): string
+    {
         return $this->nome;
     }
 
-    public function setNome($nome) {
-        $this->nome = $nome;
-    }
-
-    public function getSobrenome() {
+    public function getSobrenome(): string
+    {
         return $this->sobrenome;
     }
 
-    public function setSobrenome($sobrenome) {
-        $this->sobrenome = $sobrenome;
-    }
-
-    public function getSalario() {
+    public function getSalario(): float
+    {
         return $this->salario;
     }
 
-    public function setSalario($salario) {
-        $this->salario = $salario;
-    }
-
-    public function getCargo() {
+    public function getCargo(): string
+    {
         return $this->cargo;
     }
 
-    public function setCargo($cargo) {
-        $this->cargo = $cargo;
-    }
-
-    public function getSetor() {
+    public function getSetor(): string
+    {
         return $this->setor;
     }
 
-    public function setSetor($setor) {
-        $this->setor = $setor;
-    }
-
-    public function getCracha() {
+    public function getCracha(): string
+    {
         return $this->cracha;
     }
 
-    public function setCracha($cracha) {
-        $this->cracha = $cracha;
+    public function getIdPessoa(): ?int
+    {
+        return $this->idPessoa;
     }
 }
