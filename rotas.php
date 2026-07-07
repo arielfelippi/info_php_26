@@ -2,20 +2,19 @@
 
 return [
     ['GET', '/', function () {
-        echo "Página inicial";
+        echo "<h1>Página inicial</h1>";
+        echo "<a href='/funcionarios'>Funcionários</a>";
     }],
 
-    ['GET', '/usuarios', 'listarUsuarios'],
+    ['GET', '/funcionarios', 'listarFuncionarios'],
 
-    ['GET', '/usuarios/novo', function () {
-        require __DIR__ . '/form-usuario.php';
-    }],
+    ['GET', '/funcionarios/novo', 'exibirFormularioFuncionario'],
 
-    ['POST', '/usuarios', 'criarUsuario'],
+    ['POST', '/funcionarios', 'criarFuncionario'],
 
-    ['GET', '/usuarios/{id}/editar', 'editarUsuario'],
+    ['GET', '/funcionarios/{id}/editar', 'editarFuncionario'],
 
-    ['POST', '/usuarios/{id}', 'atualizarUsuario'],
+    ['POST', '/funcionarios/{id}', 'atualizarFuncionario'],
 
-    ['POST', '/usuarios/{id}/deletar', 'deletarUsuario'],
+    ['POST', '/funcionarios/{id}/deletar', 'deletarFuncionario'],
 ];
