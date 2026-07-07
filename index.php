@@ -1,30 +1,24 @@
 <?php
 
-require_once "bootstrap.php";
+require_once __DIR__ . '/bootstrap.php';
 
-$dados = $_REQUEST ?? [];
+$rotas = require __DIR__ . '/rotas.php';
 
-print_r($dados);
+$uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+$metodo = $_POST['_method'] ?? $_SERVER['REQUEST_METHOD'];
 
-exit;
+foreach ($rotas as $rota) {
+    [$metodoRota, $caminhoRota, $acao] = $rota;
 
-echo "<pre>";
-try {
-    $dados = [
-            "nome" => "Ana",
-            "sobrenome" => "Beltrano",
-            "salario" => 26000,
-            "cargo" => "Medica",
-            "setor" => "Saude",
-            "cracha" => "0035",
-            "idPessoa" => 9,
-        ];
+    $padrao = preg_replace('/\{([a-zA-Z]+)\}/', '([0-9]+)', $caminhoRota);
+    $padrao = "#^{$padrao}$#";
 
-    $idFuncionario = 6;//$funcionario->criar($dados);
-    $funcionarios = $funcionario->listarPorId($idFuncionario);
-    // print_r($funcionarios);
-    echo $funcionarios;    
+    if ($metodo === $metodoRota && preg_match($padrao, $uri, $matches)) {
+        array_shift($matches);
 
-} catch (Exception $e) {
-    echo $e->getMessage();
+        return call_user_func_array($acao, $matches);
+    }
 }
+
+http_response_code(404);
+echo "Página não encontrada";
