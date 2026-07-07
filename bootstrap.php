@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 
 require_once "conexao.php";
@@ -8,5 +9,6 @@ require_once "Funcionario.php";
 require_once "FuncionarioController.php";
 
 $banco = new BancoDeDados($conexao);
-$funcionarioModel = new FuncionarioModel($banco);   
+$funcionarioModel = new FuncionarioModel($banco);
 $funcionario = new Funcionario($funcionarioModel);
+$funcionarioController = new FuncionarioController($funcionario);
