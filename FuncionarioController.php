@@ -114,7 +114,7 @@ class FuncionarioController
         $titulo = "Editar funcionário";
         $action = "/info_php_26/funcionarios/{$id}";
 
-        require __DIR__ . "/info_php_26/form-funcionario.php";
+        require __DIR__ . "/form-funcionario.php";
     }
 
     public function atualizar(int|string $id): void
