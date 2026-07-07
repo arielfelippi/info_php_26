@@ -6,15 +6,15 @@ return [
         echo "<a href='/funcionarios'>Funcionários</a>";
     }],
 
-    ['GET', '/funcionarios', 'listarFuncionarios'],
+    ['GET', '/funcionarios', [$funcionarioController, 'listar']],
 
-    ['GET', '/funcionarios/novo', 'exibirFormularioFuncionario'],
+    ['GET', '/funcionarios/novo', [$funcionarioController, 'novo']],
 
-    ['POST', '/funcionarios', 'criarFuncionario'],
+    ['POST', '/funcionarios', [$funcionarioController, 'criar']],
 
-    ['GET', '/funcionarios/{id}/editar', 'editarFuncionario'],
+    ['GET', '/funcionarios/{id}/editar', [$funcionarioController, 'editar']],
 
-    ['POST', '/funcionarios/{id}', 'atualizarFuncionario'],
+    ['POST', '/funcionarios/{id}', [$funcionarioController, 'atualizar']],
 
-    ['POST', '/funcionarios/{id}/deletar', 'deletarFuncionario'],
+    ['POST', '/funcionarios/{id}/deletar', [$funcionarioController, 'deletar']],
 ];
