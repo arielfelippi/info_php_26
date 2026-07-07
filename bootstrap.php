@@ -2,13 +2,13 @@
 
 session_start();
 
-require_once "conexao.php";
-require_once "BancoDeDados.php";
-require_once "FuncionarioModel.php";
-require_once "Funcionario.php";
-require_once "FuncionarioController.php";
+require_once __DIR__ . "/conexao.php";
+require_once __DIR__ . "/BancoDeDados.php";
+require_once __DIR__ . "/BaseModel.php";
+require_once __DIR__ . "/FuncionarioModel.php";
+require_once __DIR__ . "/Funcionario.php";
+require_once __DIR__ . "/FuncionarioController.php";
 
 $banco = new BancoDeDados($conexao);
 $funcionarioModel = new FuncionarioModel($banco);
-$funcionario = new Funcionario($funcionarioModel);
-$funcionarioController = new FuncionarioController($funcionario);
+$funcionarioController = new FuncionarioController($funcionarioModel);
