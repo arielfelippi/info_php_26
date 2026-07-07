@@ -2,21 +2,23 @@
 
 class FuncionarioController
 {
-    private Funcionario $funcionario;
+    private FuncionarioModel $funcionarioModel;
 
-    public function __construct(Funcionario $funcionario)
+    public function __construct(FuncionarioModel $funcionarioModel)
     {
-        $this->funcionario = $funcionario;
+        $this->funcionarioModel = $funcionarioModel;
     }
 
-    public function listar()
+    public function listar(): void
     {
         try {
-            $funcionarios = $this->funcionario->listar();
+            $registros = $this->funcionarioModel->listar();
+
+            $funcionarios = array_map(function ($registro) {
+                return Funcionario::criarPorDados($registro);
+            }, $registros);
         } catch (Exception $erro) {
             $funcionarios = [];
-
-            echo "<p>Erro ao listar funcionários: {$erro->getMessage()}</p>";
         }
 
         echo "<h1>Funcionários</h1>";
@@ -39,52 +41,52 @@ class FuncionarioController
         echo "<th>Setor</th>";
         echo "<th>Salário</th>";
         echo "<th>Crachá</th>";
+        echo "<th>ID Pessoa</th>";
         echo "<th>Ações</th>";
         echo "</tr>";
 
-        foreach ($funcionarios as $item) {
+        foreach ($funcionarios as $funcionario) {
             echo "<tr>";
-            echo "<td>{$item->id}</td>";
-            echo "<td>{$item->nome}</td>";
-            echo "<td>{$item->sobrenome}</td>";
-            echo "<td>{$item->cargo}</td>";
-            echo "<td>{$item->setor}</td>";
-            echo "<td>{$item->salario}</td>";
-            echo "<td>{$item->cracha}</td>";
+            echo "<td>{$funcionario->getId()}</td>";
+            echo "<td>{$funcionario->getNome()}</td>";
+            echo "<td>{$funcionario->getSobrenome()}</td>";
+            echo "<td>{$funcionario->getCargo()}</td>";
+            echo "<td>{$funcionario->getSetor()}</td>";
+            echo "<td>{$funcionario->getSalario()}</td>";
+            echo "<td>{$funcionario->getCracha()}</td>";
+            echo "<td>{$funcionario->getIdPessoa()}</td>";
 
             echo "<td>";
-            echo "<a href='/funcionarios/{$item->id}/editar'>Editar</a>";
+            echo "<a href='/funcionarios/{$funcionario->getId()}/editar'>Editar</a>";
 
             echo "
-                <form method='POST' action='/funcionarios/{$item->id}/deletar' style='display:inline'>
+                <form method='POST' action='/funcionarios/{$funcionario->getId()}/deletar' style='display:inline'>
                     <button type='submit'>Excluir</button>
                 </form>
             ";
 
             echo "</td>";
-
             echo "</tr>";
         }
 
         echo "</table>";
     }
 
-    public function novo()
+    public function novo(): void
     {
         $titulo = "Novo funcionário";
         $action = "/funcionarios";
-
-        $funcionarioEdicao = null;
+        $funcionarioFormulario = new Funcionario();
 
         require __DIR__ . "/form-funcionario.php";
     }
 
-    public function criar()
+    public function criar(): void
     {
-        $dados = $this->obterDadosFormulario();
+        $funcionario = Funcionario::criarPorDados($this->obterDadosFormulario());
 
         try {
-            $this->funcionario->criar($dados);
+            $this->funcionarioModel->criar($funcionario->toArrayParaBanco());
 
             $this->redirecionarParaFuncionarios();
         } catch (Exception $erro) {
@@ -92,10 +94,17 @@ class FuncionarioController
         }
     }
 
-    public function editar($id)
+    public function editar(int|string $id): void
     {
         try {
-            $funcionarioEdicao = $this->funcionario->listarPorId($id);
+            $registros = $this->funcionarioModel->listarPorId((int) $id);
+
+            if (empty($registros)) {
+                echo "<p>Funcionário não encontrado.</p>";
+                return;
+            }
+
+            $funcionarioFormulario = Funcionario::criarPorDados($registros[0]);
         } catch (Exception $erro) {
             echo "<p>Funcionário não encontrado.</p>";
             return;
@@ -107,12 +116,12 @@ class FuncionarioController
         require __DIR__ . "/form-funcionario.php";
     }
 
-    public function atualizar($id)
+    public function atualizar(int|string $id): void
     {
-        $dados = $this->obterDadosFormulario();
+        $funcionario = Funcionario::criarPorDados($this->obterDadosFormulario());
 
         try {
-            $this->funcionario->atualizar($id, $dados);
+            $this->funcionarioModel->atualizar((int) $id, $funcionario->toArrayParaBanco());
 
             $this->redirecionarParaFuncionarios();
         } catch (Exception $erro) {
@@ -120,10 +129,10 @@ class FuncionarioController
         }
     }
 
-    public function deletar($id)
+    public function deletar(int|string $id): void
     {
         try {
-            $this->funcionario->excluir($id);
+            $this->funcionarioModel->excluir((int) $id);
 
             $this->redirecionarParaFuncionarios();
         } catch (Exception $erro) {
@@ -131,7 +140,7 @@ class FuncionarioController
         }
     }
 
-    private function obterDadosFormulario()
+    private function obterDadosFormulario(): object
     {
         return (object) [
             "nome" => $_POST["nome"] ?? "",
@@ -140,11 +149,11 @@ class FuncionarioController
             "cargo" => $_POST["cargo"] ?? "",
             "setor" => $_POST["setor"] ?? "",
             "cracha" => $_POST["cracha"] ?? "",
-            "idPessoa" => $_POST["idPessoa"] ?? 0,
+            "idPessoa" => $_POST["idPessoa"] ?? null,
         ];
     }
 
-    private function redirecionarParaFuncionarios()
+    private function redirecionarParaFuncionarios(): void
     {
         header("Location: /funcionarios");
         exit;
