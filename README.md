@@ -27,11 +27,19 @@ git clone LINK_GITHUB da um enter. Novamente, file open folder: seleciona tudo e
    </VirtualHost>
 ```
 
-- Sair com esc :wq!
-- Executar o comando: `a2enmod rewrite`
+- Para sair do editor VIM pressionar `ESC` seguido de `:wq!`
+- Executar o comando:
+```bash
+   sudo a2enmod rewrite
+```
+
 - Parar e Iniciar o apache:
-   - `sudo service apache2 stop`
-   - `sudo service apache2 start`
+   - ```bash
+         sudo service apache2 stop
+      ```
+   - ```bash
+         sudo service apache2 start
+      ```
 
 
 # MariaDB
