@@ -8,6 +8,32 @@ git clone LINK_GITHUB da um enter. Novamente, file open folder: seleciona tudo e
 
 - /var/www/html/curso_php_26 e da um ok. Após, terminal novo terminal verifica se esta em: /var/www/html/curso_php_26.
 
+# Configurar apache para aceitar rotas
+- Editar o arquivo
+`sudo vim /etc/apache2/sites-available/000-default.conf `
+
+- Adcionar o conteudo de directory
+
+```bash
+   <VirtualHost *:80>
+      ServerName localhost
+      ServerAlias localhost
+      DocumentRoot "/var/www/html"
+      <Directory "/var/www/html/">
+         Options +Indexes +Includes +FollowSymLinks +MultiViews
+         AllowOverride All
+         Require all granted
+      </Directory>
+   </VirtualHost>
+```
+
+- Sair com esc :wq!
+- Executar o comando: `a2enmod rewrite`
+- Parar e Iniciar o apache:
+   - `sudo service apache2 stop`
+   - `sudo service apache2 start`
+
+
 # MariaDB
 
 ## Executar no terminal os comandos abaixo

@@ -5,7 +5,7 @@ $base_url = "/info_php_26";
 return [
     ['GET', "$base_url/", function () {
         echo "<h1>Página inicial</h1>";
-        echo "<a href='/funcionarios'>Funcionários</a>";
+        echo "<a href='/info_php_26/funcionarios'>Funcionários</a>";
     }],
 
     ['GET', "$base_url/funcionarios", [$funcionarioController, 'listar']],
