@@ -1,6 +1,6 @@
 <?php
 
-class Funcionario
+class FuncionarioEntity
 {
     private ?int $id = null;
     private string $nome = "";
@@ -14,7 +14,7 @@ class Funcionario
     public static function criarPorDados(object|array $dados): self
     {
         $funcionario = new self();
-        // $funcionario = new Funcionario();
+        // $funcionario = new FuncionarioEntity();
 
         $funcionario->preencher($dados);
 
