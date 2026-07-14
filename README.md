@@ -10,9 +10,13 @@ git clone LINK_GITHUB da um enter. Novamente, file open folder: seleciona tudo e
 
 # Configurar apache para aceitar rotas
 - Editar o arquivo
-`sudo vim /etc/apache2/sites-available/000-default.conf `
+```bash
+sudo vim /etc/apache2/sites-available/000-default.conf
+```
 
-- Adcionar o conteudo de directory
+- Para editar pressionar a tecla insert
+
+- Adcionar o conteudo de directory(abaixo): <Directory "/var/www/html/">...</Directory>
 
 ```bash
    <VirtualHost *:80>
