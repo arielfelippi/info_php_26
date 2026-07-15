@@ -18,6 +18,20 @@ class FuncionarioController
             $funcionarios = array_map(function ($registro) {
                 return FuncionarioEntity::criarPorDados($registro);
             }, $registros);
+
+            $mensagemSucesso = $_SESSION["flash"]["sucesso"] ?? "";
+            $mensagemErro = $_SESSION["flash"]["erro"] ?? "";
+
+            if(!empty($mensagemSucesso)){
+                $html = "<p><strong>$mensagemSucesso</strong></p>";
+                echo $html;
+            } else if(!empty($mensagemErro)) {
+                $html = "<p><strong>$mensagemErro</strong></p>";
+                echo $html;
+            }
+
+            unset($_SESSION["flash"]);
+
         } catch (Exception $erro) {
             $funcionarios = [];
         }
@@ -79,7 +93,9 @@ class FuncionarioController
         $action = "/info_php_26/funcionarios";
         $funcionarioFormulario = new FuncionarioEntity();
 
-        require __DIR__ . "/form-funcionario.php";
+        $rotaRaiz = dirname(__DIR__, 2);
+
+        require $rotaRaiz . "/src/views/form-funcionario.php";
     }
 
     public function criar(): void
@@ -114,7 +130,9 @@ class FuncionarioController
         $titulo = "Editar funcionário";
         $action = "/info_php_26/funcionarios/{$id}";
 
-        require __DIR__ . "/form-funcionario.php";
+        $rotaRaiz = dirname(__DIR__, 2);
+
+        require $rotaRaiz . "/src/views/form-funcionario.php";
     }
 
     public function atualizar(int|string $id): void
@@ -135,9 +153,12 @@ class FuncionarioController
         try {
             $this->funcionarioModel->excluir((int) $id);
 
+            $this->adicionarMensagemSucessoFlash("O Funcionário id: {$id} foi excluido.");
+
             $this->redirecionarParaFuncionarios();
         } catch (Exception $erro) {
-            echo "<p>Erro ao excluir funcionário: {$erro->getMessage()}</p>";
+            $msgErro = "Erro ao excluir funcionário: {$erro->getMessage()}";
+            $this->adicionarMensagemErroFlash($msgErro);
         }
     }
 
@@ -158,5 +179,13 @@ class FuncionarioController
     {
         header("Location: /info_php_26/funcionarios");
         exit;
+    }
+
+    private function adicionarMensagemSucessoFlash($mensagem) {
+        $_SESSION["flash"]["sucesso"] = $mensagem;
+    }
+
+    private function adicionarMensagemErroFlash($mensagem) {
+        $_SESSION["flash"]["erro"] = $mensagem;
     }
 }
