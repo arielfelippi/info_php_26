@@ -16,7 +16,7 @@ class FuncionarioController
             $registros = $this->funcionarioModel->listar();
 
             $funcionarios = array_map(function ($registro) {
-                return Funcionario::criarPorDados($registro);
+                return FuncionarioEntity::criarPorDados($registro);
             }, $registros);
         } catch (Exception $erro) {
             $funcionarios = [];
@@ -77,14 +77,14 @@ class FuncionarioController
     {
         $titulo = "Novo funcionário";
         $action = "/info_php_26/funcionarios";
-        $funcionarioFormulario = new Funcionario();
+        $funcionarioFormulario = new FuncionarioEntity();
 
         require __DIR__ . "/form-funcionario.php";
     }
 
     public function criar(): void
     {
-        $funcionario = Funcionario::criarPorDados($this->obterDadosFormulario());
+        $funcionario = FuncionarioEntity::criarPorDados($this->obterDadosFormulario());
 
         try {
             $this->funcionarioModel->criar($funcionario->toArrayParaBanco());
@@ -105,7 +105,7 @@ class FuncionarioController
                 return;
             }
 
-            $funcionarioFormulario = Funcionario::criarPorDados($registros[0]);
+            $funcionarioFormulario = FuncionarioEntity::criarPorDados($registros[0]);
         } catch (Exception $erro) {
             echo "<p>Funcionário não encontrado.</p>";
             return;
@@ -119,7 +119,7 @@ class FuncionarioController
 
     public function atualizar(int|string $id): void
     {
-        $funcionario = Funcionario::criarPorDados($this->obterDadosFormulario());
+        $funcionario = FuncionarioEntity::criarPorDados($this->obterDadosFormulario());
 
         try {
             $this->funcionarioModel->atualizar((int) $id, $funcionario->toArrayParaBanco());

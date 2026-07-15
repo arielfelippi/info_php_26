@@ -21,11 +21,11 @@
 // Carrega o arquivo bootstrap.php.
 // Esse arquivo pode iniciar sessão, carregar funções,
 // configurar conexão com banco, importar arquivos etc.
-require_once 'bootstrap.php';
+require_once './src/config/bootstrap.php';
 
 // Carrega o arquivo de rotas.
 // O arquivo rotas.php retorna um array com todas as rotas da aplicação.
-$rotas = require_once 'rotas.php';
+$rotas = require_once './src/rotas/web/rotas.php';
 
 $base_url = "/info_php_26";
 

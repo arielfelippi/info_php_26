@@ -1,6 +1,6 @@
 <?php
 
-$funcionarioFormulario = $funcionarioFormulario ?? new Funcionario();
+$funcionarioFormulario = $funcionarioFormulario ?? new FuncionarioEntity();
 
 function escapar($valor): string
 {
