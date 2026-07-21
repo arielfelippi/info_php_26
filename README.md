@@ -6,7 +6,6 @@
 info_php_26/
 ├── index.php
 ├── .htaccess
-├── database.sql
 └── src/
     ├── kernel/
     │   ├── bootstrap.php
