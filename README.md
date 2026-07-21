@@ -18,8 +18,7 @@ info_php_26/
     │   └── BaseModel.php
     ├── config/
     │   ├── app.php
-    │   ├── conexao.php
-    │   └── rotas.php
+    │   └── conexao.php
     ├── controllers/
     │   └── funcionario/
     │       └── FuncionarioController.php
