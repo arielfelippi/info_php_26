@@ -1,15 +1,6 @@
-<?php
-
-$funcionarioFormulario = $funcionarioFormulario ?? new FuncionarioEntity();
-
-function escapar($valor): string
-{
-    return htmlspecialchars((string) $valor, ENT_QUOTES, "UTF-8");
-}
-
-?>
-
 <h1><?= escapar($titulo) ?></h1>
+
+<?php renderizarFlashMessages(); ?>
 
 <form method="POST" action="<?= escapar($action) ?>">
     <div>
@@ -17,7 +8,7 @@ function escapar($valor): string
         <input
             type="text"
             name="nome"
-            value="<?= escapar($funcionarioFormulario->getNome()) ?>"
+            value="<?= escapar($funcionario->getNome()) ?>"
         >
     </div>
 
@@ -26,7 +17,7 @@ function escapar($valor): string
         <input
             type="text"
             name="sobrenome"
-            value="<?= escapar($funcionarioFormulario->getSobrenome()) ?>"
+            value="<?= escapar($funcionario->getSobrenome()) ?>"
         >
     </div>
 
@@ -36,7 +27,7 @@ function escapar($valor): string
             type="number"
             step="0.01"
             name="salario"
-            value="<?= escapar($funcionarioFormulario->getSalario()) ?>"
+            value="<?= escapar($funcionario->getSalario()) ?>"
         >
     </div>
 
@@ -45,7 +36,7 @@ function escapar($valor): string
         <input
             type="text"
             name="cargo"
-            value="<?= escapar($funcionarioFormulario->getCargo()) ?>"
+            value="<?= escapar($funcionario->getCargo()) ?>"
         >
     </div>
 
@@ -54,7 +45,7 @@ function escapar($valor): string
         <input
             type="text"
             name="setor"
-            value="<?= escapar($funcionarioFormulario->getSetor()) ?>"
+            value="<?= escapar($funcionario->getSetor()) ?>"
         >
     </div>
 
@@ -63,7 +54,7 @@ function escapar($valor): string
         <input
             type="text"
             name="cracha"
-            value="<?= escapar($funcionarioFormulario->getCracha()) ?>"
+            value="<?= escapar($funcionario->getCracha()) ?>"
         >
     </div>
 
@@ -72,7 +63,7 @@ function escapar($valor): string
         <input
             type="number"
             name="idPessoa"
-            value="<?= escapar($funcionarioFormulario->getIdPessoa()) ?>"
+            value="<?= escapar($funcionario->getIdPessoa()) ?>"
         >
     </div>
 
@@ -80,5 +71,5 @@ function escapar($valor): string
 
     <button type="submit">Salvar</button>
 
-    <a href="/info_php_26/funcionarios">Voltar</a>
+    <a href="<?= url("/funcionarios") ?>">Voltar</a>
 </form>

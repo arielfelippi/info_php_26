@@ -14,7 +14,6 @@ class FuncionarioEntity
     public static function criarPorDados(object|array $dados): self
     {
         $funcionario = new self();
-        // $funcionario = new FuncionarioEntity();
 
         $funcionario->preencher($dados);
 
@@ -28,25 +27,11 @@ class FuncionarioEntity
         $this->id = isset($dados->id) ? (int) $dados->id : $this->id;
         $this->nome = $dados->nome ?? $this->nome;
         $this->sobrenome = $dados->sobrenome ?? $this->sobrenome;
-        $this->salario = isset($dados->salario) ? (float) $dados->salario : $this->salario;
+        $this->salario = isset($dados->salario) && $dados->salario !== "" ? (float) $dados->salario : $this->salario;
         $this->cargo = $dados->cargo ?? $this->cargo;
         $this->setor = $dados->setor ?? $this->setor;
         $this->cracha = $dados->cracha ?? $this->cracha;
-        $this->idPessoa = isset($dados->idPessoa) ? (int) $dados->idPessoa : $this->idPessoa;
-    }
-
-    public function toArray(): array
-    {
-        return [
-            "id" => $this->id,
-            "nome" => $this->nome,
-            "sobrenome" => $this->sobrenome,
-            "salario" => $this->salario,
-            "cargo" => $this->cargo,
-            "setor" => $this->setor,
-            "cracha" => $this->cracha,
-            "idPessoa" => $this->idPessoa,
-        ];
+        $this->idPessoa = isset($dados->idPessoa) && $dados->idPessoa !== "" ? (int) $dados->idPessoa : $this->idPessoa;
     }
 
     public function toArrayParaBanco(): array

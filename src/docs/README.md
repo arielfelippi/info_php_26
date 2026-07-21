@@ -73,20 +73,20 @@ set session sql_mode = 'No_engine_substitution';
 ```SQL
 -- Retornar se o filtro for atendido
 select u.* from usuario as u
-inner join pessoa_fisica as pf 
+inner join pessoa_fisica as pf
 ON u.id = pf.usuario_alteracao;
 
 -- Retornar tudo(usuario + Pessoa_fisica) se encontrar
 -- senao retorna os dados de usuario
 select u.* from usuario as u
-left join pessoa_fisica as pf 
+left join pessoa_fisica as pf
 ON u.id = pf.usuario_alteracao;
 
 
 -- Retornar tudo(Pessoa_fisica + usuario) se encontrar
 -- senao retorna os dados da Pessoa_fisica
 select u.* from usuario as u
-right join pessoa_fisica as pf 
+right join pessoa_fisica as pf
 ON u.id = pf.usuario_alteracao;
 
 
@@ -111,7 +111,7 @@ FROM endereco ende
 right JOIN pessoa p ON ende.id = p.idEndereco;
 
 SELECT p.id as "idPessoa", p.nome as "nomePessoa", p.cpf, func.cargo, func.cracha, func.salario
-FROM funcionario func 
+FROM funcionario func
 INNER JOIN pessoa p ON func.idPessoa = p.id;
 
 -- Adicionar campos e deixar a data e hora automatica no insert e update

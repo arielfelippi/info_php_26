@@ -1,60 +1,104 @@
 <?php
 
-class BancoDeDados {
+class BancoDeDados
+{
+    private mysqli $conexao;
 
-    private $conexao;
-    
-    public function __construct($conexao)
+    public function __construct(mysqli $conexao)
     {
         $this->conexao = $conexao;
     }
-    
-    public function fecharConexao()
+
+    public function consultar(string $sql, array $parametros = []): array
+    {
+        $statement = $this->preparar($sql, $parametros);
+
+        $resultado = $statement->get_result();
+
+        $dados = [];
+
+        while ($registro = $resultado->fetch_assoc()) {
+            $dados[] = (object) $registro;
+        }
+
+        $statement->close();
+
+        return $dados;
+    }
+
+    public function inserir(string $sql, array $parametros = []): int
+    {
+        $statement = $this->preparar($sql, $parametros);
+
+        $idInserido = $this->conexao->insert_id;
+
+        $statement->close();
+
+        return $idInserido;
+    }
+
+    public function executar(string $sql, array $parametros = []): int
+    {
+        $statement = $this->preparar($sql, $parametros);
+
+        $linhasAfetadas = $statement->affected_rows;
+
+        $statement->close();
+
+        return $linhasAfetadas;
+    }
+
+    public function fecharConexao(): void
     {
         $this->conexao->close();
     }
 
-    private function executar($sql)
+    private function preparar(string $sql, array $parametros = []): mysqli_stmt
     {
-        $dados = [];
+        $statement = $this->conexao->prepare($sql);
 
-        $isCreate = str_contains($sql, "INSERT");
-        $isUpdate = str_contains($sql, "UPDATE");
-        $isDelete = str_contains($sql, "DELETE");
-
-        $result = $this->conexao->query($sql);
-        
-        if ($isCreate) {
-            return $this->conexao->insert_id;
+        if ($statement === false) {
+            throw new Exception("Erro ao preparar SQL: " . $this->conexao->error);
         }
 
-        if ($isUpdate || $isDelete) {
-            return $this->conexao->affected_rows;
+        if (!empty($parametros)) {
+            $tipos = $this->obterTiposDosParametros($parametros);
+            $referencias = [];
+
+            foreach ($parametros as $indice => $valor) {
+                $referencias[$indice] = &$parametros[$indice];
+            }
+
+            $statement->bind_param($tipos, ...$referencias);
         }
 
-        $existeDados = $result->num_rows > 0;
+        $executou = $statement->execute();
 
-        if (!$existeDados) {
-            return $dados; // []
+        if (!$executou) {
+            throw new Exception("Erro ao executar SQL: " . $statement->error);
         }
 
-        while ($registro = $result->fetch_assoc()) {
-            $linha = (object) $registro;
-            $dados[] = $linha;
-        }
-
-        return $dados;
+        return $statement;
     }
 
-    public function execQuery($sql, $msg = "Não foi possivel obter os dados.") {
+    private function obterTiposDosParametros(array $parametros): string
+    {
+        $tipos = "";
 
-        $sql .=";";
-        $dados = $this->executar($sql);
+        foreach ($parametros as $parametro) {
+            if (is_int($parametro)) {
+                $tipos .= "i";
+                continue;
+            }
 
-        if (empty($dados)) {
-            throw new Exception($msg);
+            if (is_float($parametro)) {
+                $tipos .= "d";
+                continue;
+            }
+
+            $tipos .= "s";
         }
-        
-        return $dados;
+
+        return $tipos;
     }
 }
